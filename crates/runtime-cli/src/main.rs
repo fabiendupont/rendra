@@ -35,6 +35,13 @@ enum Commands {
         path: PathBuf,
     },
 
+    /// Package the application as an AppImage
+    Package {
+        /// Project directory
+        #[arg(short, long, default_value = ".", help = "Project directory")]
+        path: PathBuf,
+    },
+
     /// Check permissions: audit app.toml vs actual API usage
     CheckPermissions {
         /// Project directory
@@ -70,6 +77,17 @@ fn main() {
             if let Err(e) = runtime_cli::dev::run_dev(&path) {
                 eprintln!("Error: {e}");
                 std::process::exit(1);
+            }
+        }
+        Commands::Package { path } => {
+            match runtime_cli::package::run_package(&path) {
+                Ok(output) => {
+                    println!("Package ready: {}", output.display());
+                }
+                Err(e) => {
+                    eprintln!("Error: {e}");
+                    std::process::exit(1);
+                }
             }
         }
         Commands::CheckPermissions { path } => {
