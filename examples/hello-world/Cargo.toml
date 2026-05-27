@@ -5,4 +5,7 @@ edition = "2024"
 
 [dependencies]
 runtime-core = { path = "../../crates/runtime-core" }
+runtime-ipc = { path = "../../crates/runtime-ipc" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 url = "2"
