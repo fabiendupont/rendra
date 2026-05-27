@@ -13,3 +13,5 @@ tracing.workspace = true
 thiserror.workspace = true
 raw-window-handle = "0.6"
 rustls = { version = "0.23", features = ["aws-lc-rs"] }
+runtime-ipc = { path = "../runtime-ipc" }
+serde_json = "1"
