@@ -1,4 +1,5 @@
 pub mod event_loop;
+mod keyboard;
 pub mod servo_embed;
 pub mod window;
 
@@ -6,8 +7,8 @@ use std::rc::Rc;
 
 use euclid::Size2D;
 use servo::{
-    DevicePoint, InputEvent, MouseButton as ServoMouseButton, MouseButtonAction,
-    MouseButtonEvent, MouseMoveEvent, WebViewPoint,
+    DevicePoint, InputEvent, KeyboardEvent as ServoKeyboardEvent, MouseButton as ServoMouseButton,
+    MouseButtonAction, MouseButtonEvent, MouseMoveEvent, WebViewPoint,
 };
 use url::Url;
 use winit::application::ApplicationHandler;
@@ -90,6 +91,7 @@ impl AppBuilder {
             commands: Some(self.commands),
             state: None,
             cursor_pos: DevicePoint::zero(),
+            modifiers: winit::event::Modifiers::default(),
         };
 
         event_loop.run_app(&mut app)?;
@@ -113,6 +115,7 @@ struct App {
     commands: Option<runtime_ipc::command::CommandRegistry>,
     state: Option<AppState>,
     cursor_pos: DevicePoint,
+    modifiers: winit::event::Modifiers,
 }
 
 impl ApplicationHandler<WakerEvent> for App {
@@ -183,6 +186,16 @@ impl ApplicationHandler<WakerEvent> for App {
                     webview.notify_input_event(InputEvent::MouseButton(
                         MouseButtonEvent::new(action, servo_button, point),
                     ));
+                }
+                state.servo.spin();
+            }
+            WindowEvent::ModifiersChanged(new_modifiers) => {
+                self.modifiers = new_modifiers;
+            }
+            WindowEvent::KeyboardInput { event, .. } => {
+                let servo_event = keyboard::convert_key_event(&event, &self.modifiers);
+                if let Some(webview) = state.window.webviews.borrow().last() {
+                    webview.notify_input_event(InputEvent::Keyboard(servo_event));
                 }
                 state.servo.spin();
             }
