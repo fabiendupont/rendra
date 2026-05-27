@@ -8,6 +8,7 @@ members = [
     "crates/runtime-macros",
     "crates/runtime-sandbox",
     "runtime-bindgen",
+    "examples/hello-world",
 ]
 
 [workspace.package]
