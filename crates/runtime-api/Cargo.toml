@@ -19,3 +19,4 @@ winit = "0.30"
 [dev-dependencies]
 tempfile = "3"
 tokio = { version = "1", features = ["rt", "macros"] }
+toml = "0.8"
