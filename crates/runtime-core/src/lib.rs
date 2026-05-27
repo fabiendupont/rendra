@@ -8,11 +8,12 @@ use std::rc::Rc;
 use euclid::Size2D;
 use servo::{
     DevicePoint, InputEvent, KeyboardEvent as ServoKeyboardEvent, MouseButton as ServoMouseButton,
-    MouseButtonAction, MouseButtonEvent, MouseMoveEvent, WebViewPoint,
+    MouseButtonAction, MouseButtonEvent, MouseMoveEvent, WebViewPoint, WheelDelta, WheelEvent,
+    WheelMode,
 };
 use url::Url;
 use winit::application::ApplicationHandler;
-use winit::event::{ElementState, MouseButton, WindowEvent};
+use winit::event::{ElementState, MouseButton, MouseScrollDelta, WindowEvent};
 use winit::event_loop::EventLoop;
 
 use crate::event_loop::{Waker, WakerEvent};
@@ -188,6 +189,24 @@ impl ApplicationHandler<WakerEvent> for App {
                     webview.notify_input_event(InputEvent::MouseButton(
                         MouseButtonEvent::new(action, servo_button, point),
                     ));
+                }
+                state.servo.spin();
+            }
+            WindowEvent::MouseWheel { delta, .. } => {
+                let (dx, dy, mode) = match delta {
+                    MouseScrollDelta::LineDelta(x, y) => {
+                        ((x * 38.0) as f64, (y * 38.0) as f64, WheelMode::DeltaLine)
+                    }
+                    MouseScrollDelta::PixelDelta(d) => {
+                        (d.x, d.y, WheelMode::DeltaPixel)
+                    }
+                };
+                let point = WebViewPoint::Device(self.cursor_pos);
+                if let Some(webview) = state.window.webviews.borrow().last() {
+                    webview.notify_input_event(InputEvent::Wheel(WheelEvent::new(
+                        WheelDelta { x: dx, y: dy, z: 0.0, mode },
+                        point,
+                    )));
                 }
                 state.servo.spin();
             }
