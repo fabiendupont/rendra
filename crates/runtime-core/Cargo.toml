@@ -15,4 +15,7 @@ raw-window-handle = "0.6"
 rustls = { version = "0.23", features = ["aws-lc-rs"] }
 libc = "0.2"
 runtime-ipc = { path = "../runtime-ipc" }
+runtime-api = { path = "../runtime-api" }
+runtime-sandbox = { path = "../runtime-sandbox" }
+serde = { version = "1", features = ["derive"] }
 serde_json = "1"

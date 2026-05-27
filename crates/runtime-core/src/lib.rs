@@ -1,3 +1,4 @@
+pub mod context;
 pub mod event_loop;
 mod keyboard;
 pub mod servo_embed;
@@ -7,9 +8,8 @@ use std::rc::Rc;
 
 use euclid::Size2D;
 use servo::{
-    DevicePoint, InputEvent, KeyboardEvent as ServoKeyboardEvent, MouseButton as ServoMouseButton,
-    MouseButtonAction, MouseButtonEvent, MouseMoveEvent, WebViewPoint, WheelDelta, WheelEvent,
-    WheelMode,
+    DevicePoint, InputEvent, MouseButton as ServoMouseButton, MouseButtonAction,
+    MouseButtonEvent, MouseMoveEvent, WebViewPoint, WheelDelta, WheelEvent, WheelMode,
 };
 use url::Url;
 use winit::application::ApplicationHandler;
@@ -26,6 +26,7 @@ pub struct AppBuilder {
     size: Size2D<i32, ()>,
     url: Url,
     commands: runtime_ipc::command::CommandRegistry,
+    context: Option<context::AppContext>,
 }
 
 impl Default for AppBuilder {
@@ -35,6 +36,7 @@ impl Default for AppBuilder {
             size: Size2D::new(1024, 768),
             url: Url::parse("about:blank").expect("valid default URL"),
             commands: runtime_ipc::command::CommandRegistry::new(),
+            context: None,
         }
     }
 }
@@ -69,6 +71,13 @@ impl AppBuilder {
         self
     }
 
+    /// Load an app manifest for permission enforcement.
+    pub fn manifest(mut self, path: &std::path::Path) -> Result<Self, runtime_sandbox::manifest::ManifestError> {
+        let ctx = context::AppContext::from_manifest_file(path)?;
+        self.context = Some(ctx);
+        Ok(self)
+    }
+
     /// Build and run the application, consuming this builder.
     ///
     /// This initializes the TLS crypto provider, creates a winit event loop,
@@ -90,6 +99,7 @@ impl AppBuilder {
             url: self.url,
             waker,
             commands: Some(self.commands),
+            context: self.context,
             state: None,
             cursor_pos: DevicePoint::zero(),
             modifiers: winit::event::Modifiers::default(),
@@ -104,6 +114,7 @@ impl AppBuilder {
 struct AppState {
     servo: ServoInstance,
     window: Rc<AppWindow>,
+    context: Option<context::AppContext>,
 }
 
 /// The winit application handler.
@@ -114,6 +125,7 @@ struct App {
     url: Url,
     waker: Waker,
     commands: Option<runtime_ipc::command::CommandRegistry>,
+    context: Option<context::AppContext>,
     state: Option<AppState>,
     cursor_pos: DevicePoint,
     modifiers: winit::event::Modifiers,
@@ -134,7 +146,8 @@ impl ApplicationHandler<WakerEvent> for App {
 
         let _webview = window.create_webview(&servo, self.url.clone());
 
-        self.state = Some(AppState { servo, window });
+        let context = self.context.take();
+        self.state = Some(AppState { servo, window, context });
     }
 
     fn window_event(
@@ -154,7 +167,7 @@ impl ApplicationHandler<WakerEvent> for App {
                 unsafe { libc::_exit(0) }
             }
             WindowEvent::RedrawRequested => {
-                state.window.flush_pending_responses();
+                state.window.flush_pending();
                 state.servo.spin();
                 state.window.paint();
             }
@@ -226,7 +239,7 @@ impl ApplicationHandler<WakerEvent> for App {
 
     fn user_event(&mut self, _event_loop: &winit::event_loop::ActiveEventLoop, _event: WakerEvent) {
         if let Some(state) = self.state.as_ref() {
-            state.window.flush_pending_responses();
+            state.window.flush_pending();
             state.servo.spin();
         }
     }

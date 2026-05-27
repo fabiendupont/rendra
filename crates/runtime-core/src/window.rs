@@ -20,6 +20,7 @@ pub struct AppWindow {
     pub webviews: RefCell<Vec<WebView>>,
     commands: RefCell<runtime_ipc::command::CommandRegistry>,
     pending_responses: RefCell<Vec<String>>,
+    pending_events: RefCell<Vec<String>>,
 }
 
 impl AppWindow {
@@ -50,6 +51,7 @@ impl AppWindow {
             webviews: RefCell::new(Vec::new()),
             commands: RefCell::new(commands),
             pending_responses: RefCell::new(Vec::new()),
+            pending_events: RefCell::new(Vec::new()),
         }))
     }
 
@@ -88,9 +90,24 @@ impl AppWindow {
         self.rendering_context.resize(size);
     }
 
-    pub fn flush_pending_responses(&self) {
+    pub fn emit_event(&self, name: &str, payload: &impl serde::Serialize) {
+        let event = runtime_ipc::event::EventMessage {
+            name: name.to_string(),
+            payload: serde_json::to_value(payload).unwrap_or(serde_json::Value::Null),
+        };
+        match serde_json::to_string(&event) {
+            Ok(json) => {
+                self.pending_events.borrow_mut().push(json);
+                self.window.request_redraw();
+            }
+            Err(e) => tracing::warn!("Failed to serialize event: {e}"),
+        }
+    }
+
+    pub fn flush_pending(&self) {
         let responses: Vec<String> = self.pending_responses.borrow_mut().drain(..).collect();
-        if responses.is_empty() {
+        let events: Vec<String> = self.pending_events.borrow_mut().drain(..).collect();
+        if responses.is_empty() && events.is_empty() {
             return;
         }
         let webviews = self.webviews.borrow();
@@ -100,6 +117,11 @@ impl AppWindow {
         for response_json in responses {
             let escaped = response_json.replace('\\', "\\\\").replace('\'', "\\'");
             let script = format!("window.__runtime._handleResponse('{escaped}')");
+            webview.evaluate_javascript(script, |_| {});
+        }
+        for event_json in events {
+            let escaped = event_json.replace('\\', "\\\\").replace('\'', "\\'");
+            let script = format!("window.__runtime._handleEvent('{escaped}')");
             webview.evaluate_javascript(script, |_| {});
         }
     }
