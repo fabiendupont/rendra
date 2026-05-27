@@ -86,9 +86,8 @@ pub const BRIDGE_JS: &str = r#"
             }
         },
 
-        // Placeholder — the runtime replaces this with the actual transport.
         _send(json) {
-            console.warn("__runtime._send not wired up", json);
+            console.log("__IPC__:" + json);
         },
     };
 })();

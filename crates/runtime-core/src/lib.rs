@@ -5,9 +5,13 @@ pub mod window;
 use std::rc::Rc;
 
 use euclid::Size2D;
+use servo::{
+    DevicePoint, InputEvent, MouseButton as ServoMouseButton, MouseButtonAction,
+    MouseButtonEvent, MouseMoveEvent, WebViewPoint,
+};
 use url::Url;
 use winit::application::ApplicationHandler;
-use winit::event::WindowEvent;
+use winit::event::{ElementState, MouseButton, WindowEvent};
 use winit::event_loop::EventLoop;
 
 use crate::event_loop::{Waker, WakerEvent};
@@ -85,6 +89,7 @@ impl AppBuilder {
             waker,
             commands: Some(self.commands),
             state: None,
+            cursor_pos: DevicePoint::zero(),
         };
 
         event_loop.run_app(&mut app)?;
@@ -96,7 +101,6 @@ impl AppBuilder {
 struct AppState {
     servo: ServoInstance,
     window: Rc<AppWindow>,
-    commands: runtime_ipc::command::CommandRegistry,
 }
 
 /// The winit application handler.
@@ -108,6 +112,7 @@ struct App {
     waker: Waker,
     commands: Option<runtime_ipc::command::CommandRegistry>,
     state: Option<AppState>,
+    cursor_pos: DevicePoint,
 }
 
 impl ApplicationHandler<WakerEvent> for App {
@@ -116,7 +121,8 @@ impl ApplicationHandler<WakerEvent> for App {
             return;
         }
 
-        let window = AppWindow::new(event_loop, &self.title, self.width, self.height)
+        let commands = self.commands.take().unwrap_or_default();
+        let window = AppWindow::new(event_loop, &self.title, self.width, self.height, commands)
             .expect("Failed to create window");
 
         let servo = ServoInstance::new(self.waker.clone());
@@ -124,8 +130,7 @@ impl ApplicationHandler<WakerEvent> for App {
 
         let _webview = window.create_webview(&servo, self.url.clone());
 
-        let commands = self.commands.take().unwrap_or_default();
-        self.state = Some(AppState { servo, window, commands });
+        self.state = Some(AppState { servo, window });
     }
 
     fn window_event(
@@ -143,11 +148,43 @@ impl ApplicationHandler<WakerEvent> for App {
                 event_loop.exit();
             }
             WindowEvent::RedrawRequested => {
+                state.window.flush_pending_responses();
                 state.servo.spin();
                 state.window.paint();
             }
             WindowEvent::Resized(_) => {
                 state.window.resize();
+            }
+            WindowEvent::CursorMoved { position, .. } => {
+                self.cursor_pos = DevicePoint::new(position.x as f32, position.y as f32);
+                let point = WebViewPoint::Device(self.cursor_pos);
+                if let Some(webview) = state.window.webviews.borrow().last() {
+                    webview.notify_input_event(InputEvent::MouseMove(
+                        MouseMoveEvent::new(point),
+                    ));
+                }
+                state.servo.spin();
+            }
+            WindowEvent::MouseInput { state: btn_state, button, .. } => {
+                let action = match btn_state {
+                    ElementState::Pressed => MouseButtonAction::Down,
+                    ElementState::Released => MouseButtonAction::Up,
+                };
+                let servo_button = match button {
+                    MouseButton::Left => ServoMouseButton::Left,
+                    MouseButton::Right => ServoMouseButton::Right,
+                    MouseButton::Middle => ServoMouseButton::Middle,
+                    MouseButton::Back => ServoMouseButton::Back,
+                    MouseButton::Forward => ServoMouseButton::Forward,
+                    MouseButton::Other(id) => ServoMouseButton::Other(id),
+                };
+                let point = WebViewPoint::Device(self.cursor_pos);
+                if let Some(webview) = state.window.webviews.borrow().last() {
+                    webview.notify_input_event(InputEvent::MouseButton(
+                        MouseButtonEvent::new(action, servo_button, point),
+                    ));
+                }
+                state.servo.spin();
             }
             _ => {}
         }
@@ -155,6 +192,7 @@ impl ApplicationHandler<WakerEvent> for App {
 
     fn user_event(&mut self, _event_loop: &winit::event_loop::ActiveEventLoop, _event: WakerEvent) {
         if let Some(state) = self.state.as_ref() {
+            state.window.flush_pending_responses();
             state.servo.spin();
         }
     }
