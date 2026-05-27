@@ -2,6 +2,7 @@
 resolver = "2"
 members = [
     "crates/runtime-core",
+    "crates/runtime-sandbox",
 ]
 
 [workspace.package]
