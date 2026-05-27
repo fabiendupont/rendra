@@ -20,6 +20,13 @@ enum Commands {
         #[arg(long)]
         path: Option<PathBuf>,
     },
+
+    /// Build and run an application in development mode
+    Dev {
+        /// Project directory
+        #[arg(short, long, default_value = ".", help = "Project directory")]
+        path: PathBuf,
+    },
 }
 
 fn main() {
@@ -37,6 +44,12 @@ fn main() {
                     eprintln!("Error: {e}");
                     std::process::exit(1);
                 }
+            }
+        }
+        Commands::Dev { path } => {
+            if let Err(e) = runtime_cli::dev::run_dev(&path) {
+                eprintln!("Error: {e}");
+                std::process::exit(1);
             }
         }
     }
