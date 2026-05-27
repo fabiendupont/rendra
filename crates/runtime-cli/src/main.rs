@@ -21,6 +21,13 @@ enum Commands {
         path: Option<PathBuf>,
     },
 
+    /// Build the application in release mode
+    Build {
+        /// Project directory
+        #[arg(short, long, default_value = ".", help = "Project directory")]
+        path: PathBuf,
+    },
+
     /// Build and run an application in development mode
     Dev {
         /// Project directory
@@ -44,6 +51,12 @@ fn main() {
                     eprintln!("Error: {e}");
                     std::process::exit(1);
                 }
+            }
+        }
+        Commands::Build { path } => {
+            if let Err(e) = runtime_cli::build::run_build(&path) {
+                eprintln!("Error: {e}");
+                std::process::exit(1);
             }
         }
         Commands::Dev { path } => {
