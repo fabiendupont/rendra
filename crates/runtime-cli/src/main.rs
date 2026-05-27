@@ -34,6 +34,13 @@ enum Commands {
         #[arg(short, long, default_value = ".", help = "Project directory")]
         path: PathBuf,
     },
+
+    /// Check permissions: audit app.toml vs actual API usage
+    CheckPermissions {
+        /// Project directory
+        #[arg(short, long, default_value = ".", help = "Project directory")]
+        path: PathBuf,
+    },
 }
 
 fn main() {
@@ -63,6 +70,36 @@ fn main() {
             if let Err(e) = runtime_cli::dev::run_dev(&path) {
                 eprintln!("Error: {e}");
                 std::process::exit(1);
+            }
+        }
+        Commands::CheckPermissions { path } => {
+            match runtime_cli::check_permissions::run_check(&path) {
+                Ok(result) => {
+                    let over = result.over_permissioned();
+                    let under = result.under_permissioned();
+
+                    if !over.is_empty() {
+                        println!("Warnings (declared but unused):");
+                        for p in &over {
+                            println!("  - {p}");
+                        }
+                    }
+                    if !under.is_empty() {
+                        eprintln!("Errors (used but not declared in app.toml):");
+                        for p in &under {
+                            eprintln!("  - {p}");
+                        }
+                        std::process::exit(1);
+                    }
+
+                    if over.is_empty() && under.is_empty() {
+                        println!("Permissions OK: declared permissions match API usage.");
+                    }
+                }
+                Err(e) => {
+                    eprintln!("Error: {e}");
+                    std::process::exit(1);
+                }
             }
         }
     }
