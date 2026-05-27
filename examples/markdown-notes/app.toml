@@ -1,0 +1,17 @@
+[app]
+name = "markdown-notes"
+version = "0.1.0"
+description = "A Markdown note-taking app"
+
+[window]
+title = "Markdown Notes"
+width = 1200
+height = 800
+resizable = true
+decorations = true
+
+[permissions.filesystem]
+user-files = "portal"
+
+[build]
+frontend = "frontend"

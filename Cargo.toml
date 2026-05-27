@@ -9,6 +9,7 @@ members = [
     "crates/runtime-sandbox",
     "runtime-bindgen",
     "examples/hello-world",
+    "examples/markdown-notes",
 ]
 
 [workspace.package]

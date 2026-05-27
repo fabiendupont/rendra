@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Markdown Notes</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #16213e;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .toolbar button {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+            border: 1px solid #4a4a6a;
+            border-radius: 4px;
+            background: #2a2a4e;
+            color: #e0e0e0;
+            cursor: pointer;
+        }
+        .toolbar button:hover { background: #3a3a5e; }
+        .toolbar button.primary {
+            background: #4a90d9;
+            border-color: #4a90d9;
+            color: #fff;
+        }
+        .toolbar button.primary:hover { background: #357abd; }
+        .toolbar .note-name {
+            margin-left: auto;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Main layout */
+        .main {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            background: #16213e;
+            border-right: 1px solid #2a2a4a;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .sidebar-header {
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .sidebar-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .sidebar-item:hover { background: rgba(255,255,255,0.05); }
+        .sidebar-item.active { background: rgba(74,144,217,0.2); }
+        .sidebar-item .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .sidebar-item .delete {
+            opacity: 0;
+            padding: 0 0.25rem;
+            cursor: pointer;
+            color: #e74c3c;
+        }
+        .sidebar-item:hover .delete { opacity: 0.7; }
+        .sidebar-item .delete:hover { opacity: 1; }
+        .sidebar-empty {
+            padding: 1rem 0.75rem;
+            font-size: 0.85rem;
+            opacity: 0.4;
+            font-style: italic;
+        }
+
+        /* Editor + Preview */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            min-width: 0;
+        }
+        .editor-pane, .preview-pane {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .pane-header {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.4;
+            background: #1e1e3a;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .editor-pane { border-right: 1px solid #2a2a4a; }
+
+        textarea {
+            flex: 1;
+            width: 100%;
+            padding: 1rem;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            tab-size: 4;
+        }
+
+        .preview {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+
+        /* Markdown preview styles */
+        .preview h1 { font-size: 1.8rem; margin: 0 0 0.75rem; color: #fff; border-bottom: 1px solid #2a2a4a; padding-bottom: 0.3rem; }
+        .preview h2 { font-size: 1.4rem; margin: 1.2rem 0 0.5rem; color: #fff; border-bottom: 1px solid #2a2a4a; padding-bottom: 0.2rem; }
+        .preview h3 { font-size: 1.15rem; margin: 1rem 0 0.4rem; color: #fff; }
+        .preview h4, .preview h5, .preview h6 { font-size: 1rem; margin: 0.8rem 0 0.3rem; color: #ccc; }
+        .preview p { margin: 0 0 0.75rem; }
+        .preview a { color: #4a90d9; text-decoration: none; }
+        .preview a:hover { text-decoration: underline; }
+        .preview strong { color: #fff; }
+        .preview code {
+            background: #2a2a4e;
+            padding: 0.15rem 0.35rem;
+            border-radius: 3px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+        }
+        .preview pre {
+            background: #16213e;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 0 0 0.75rem;
+        }
+        .preview pre code { background: none; padding: 0; }
+        .preview blockquote {
+            border-left: 3px solid #4a90d9;
+            padding: 0.25rem 0.75rem;
+            margin: 0 0 0.75rem;
+            opacity: 0.8;
+        }
+        .preview ul, .preview ol { padding-left: 1.5rem; margin: 0 0 0.75rem; }
+        .preview li { margin: 0.2rem 0; }
+        .preview hr { border: none; border-top: 1px solid #2a2a4a; margin: 1rem 0; }
+        .preview img { max-width: 100%; border-radius: 4px; }
+        .preview table { border-collapse: collapse; margin: 0 0 0.75rem; width: 100%; }
+        .preview th, .preview td { border: 1px solid #2a2a4a; padding: 0.4rem 0.6rem; text-align: left; }
+        .preview th { background: #16213e; }
+
+        /* Save dialog */
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+        .dialog-overlay.active { display: flex; }
+        .dialog {
+            background: #1e1e3a;
+            border: 1px solid #4a4a6a;
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-width: 300px;
+        }
+        .dialog h3 { margin-bottom: 1rem; color: #fff; }
+        .dialog input {
+            width: 100%;
+            padding: 0.5rem;
+            background: #2a2a4e;
+            border: 1px solid #4a4a6a;
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 1rem;
+        }
+        .dialog input:focus { border-color: #4a90d9; }
+        .dialog-buttons { display: flex; gap: 0.5rem; justify-content: flex-end; }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <button onclick="newNote()">New</button>
+        <button class="primary" onclick="showSaveDialog()">Save</button>
+        <span class="note-name" id="current-name">Untitled</span>
+    </div>
+
+    <div class="main">
+        <div class="sidebar">
+            <div class="sidebar-header">Notes</div>
+            <div class="sidebar-list" id="note-list">
+                <div class="sidebar-empty">No notes yet</div>
+            </div>
+        </div>
+
+        <div class="editor-area">
+            <div class="editor-pane">
+                <div class="pane-header">Markdown</div>
+                <textarea id="editor" placeholder="Start writing Markdown..."></textarea>
+            </div>
+            <div class="preview-pane">
+                <div class="pane-header">Preview</div>
+                <div class="preview" id="preview"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-overlay" id="save-dialog">
+        <div class="dialog">
+            <h3>Save Note</h3>
+            <input type="text" id="save-name" placeholder="Note name...">
+            <div class="dialog-buttons">
+                <button onclick="hideSaveDialog()">Cancel</button>
+                <button class="primary" onclick="saveNote()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentNote = null;
+        let renderTimeout = null;
+        const editor = document.getElementById('editor');
+        const preview = document.getElementById('preview');
+
+        editor.addEventListener('input', () => {
+            clearTimeout(renderTimeout);
+            renderTimeout = setTimeout(renderPreview, 150);
+        });
+
+        async function renderPreview() {
+            if (!window.__runtime) return;
+            const md = editor.value;
+            if (!md.trim()) {
+                preview.innerHTML = '<p style="opacity:0.3;font-style:italic">Preview will appear here...</p>';
+                return;
+            }
+            const result = await window.__runtime.invoke('render_markdown', { markdown: md });
+            preview.innerHTML = result.html;
+        }
+
+        async function loadNoteList() {
+            if (!window.__runtime) return;
+            const result = await window.__runtime.invoke('list_notes');
+            const list = document.getElementById('note-list');
+
+            if (result.notes.length === 0) {
+                list.innerHTML = '<div class="sidebar-empty">No notes yet</div>';
+                return;
+            }
+
+            list.innerHTML = result.notes.map(name => `
+                <div class="sidebar-item ${name === currentNote ? 'active' : ''}" onclick="loadNote('${name}')">
+                    <span class="name">${name}</span>
+                    <span class="delete" onclick="event.stopPropagation(); deleteNote('${name}')">×</span>
+                </div>
+            `).join('');
+        }
+
+        async function loadNote(name) {
+            if (!window.__runtime) return;
+            const result = await window.__runtime.invoke('load_note', { name });
+            currentNote = name;
+            editor.value = result.content;
+            document.getElementById('current-name').textContent = name;
+            renderPreview();
+            loadNoteList();
+        }
+
+        function newNote() {
+            currentNote = null;
+            editor.value = '';
+            preview.innerHTML = '';
+            document.getElementById('current-name').textContent = 'Untitled';
+            loadNoteList();
+        }
+
+        function showSaveDialog() {
+            const dialog = document.getElementById('save-dialog');
+            const input = document.getElementById('save-name');
+            input.value = currentNote || '';
+            dialog.classList.add('active');
+            input.focus();
+        }
+
+        function hideSaveDialog() {
+            document.getElementById('save-dialog').classList.remove('active');
+        }
+
+        async function saveNote() {
+            if (!window.__runtime) return;
+            const name = document.getElementById('save-name').value.trim();
+            if (!name) return;
+
+            await window.__runtime.invoke('save_note', {
+                name: name,
+                content: editor.value,
+            });
+
+            currentNote = name;
+            document.getElementById('current-name').textContent = name;
+            hideSaveDialog();
+            loadNoteList();
+        }
+
+        async function deleteNote(name) {
+            if (!window.__runtime) return;
+            await window.__runtime.invoke('delete_note', { name });
+            if (currentNote === name) {
+                newNote();
+            }
+            loadNoteList();
+        }
+
+        document.getElementById('save-name').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') saveNote();
+            if (e.key === 'Escape') hideSaveDialog();
+        });
+
+        // Ctrl+S to save
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                if (currentNote) {
+                    // Quick save to existing name
+                    window.__runtime.invoke('save_note', {
+                        name: currentNote,
+                        content: editor.value,
+                    });
+                } else {
+                    showSaveDialog();
+                }
+            }
+        });
+
+        // Load notes on startup
+        setTimeout(loadNoteList, 500);
+    </script>
+</body>
+</html>
