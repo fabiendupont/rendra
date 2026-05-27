@@ -6067,6 +6067,7 @@ name = "runtime-core"
 version = "0.1.0"
 dependencies = [
  "euclid",
+ "libc",
  "raw-window-handle",
  "runtime-ipc",
  "rustls",

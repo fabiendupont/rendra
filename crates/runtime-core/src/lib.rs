@@ -148,7 +148,9 @@ impl ApplicationHandler<WakerEvent> for App {
 
         match event {
             WindowEvent::CloseRequested => {
-                event_loop.exit();
+                // Hard exit to avoid segfault in Servo's cleanup (known v0.1.x issue).
+                // _exit() skips destructors and atexit handlers entirely.
+                unsafe { libc::_exit(0) }
             }
             WindowEvent::RedrawRequested => {
                 state.window.flush_pending_responses();
