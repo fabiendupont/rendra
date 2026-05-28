@@ -1,0 +1,62 @@
+/* Rendra UI — Design Tokens */
+
+:root {
+  /* Background */
+  --rd-color-bg-base: #1a1a2e;
+  --rd-color-bg-surface: #16213e;
+  --rd-color-bg-elevated: #1e1e3a;
+  --rd-color-bg-input: #2a2a4e;
+
+  /* Borders */
+  --rd-color-border: #2a2a4a;
+  --rd-color-border-strong: #4a4a6a;
+
+  /* Text */
+  --rd-color-text: #e0e0e0;
+  --rd-color-text-strong: #ffffff;
+  --rd-color-text-muted: rgba(255, 255, 255, 0.5);
+
+  /* Accent colors */
+  --rd-color-primary: #4a90d9;
+  --rd-color-primary-hover: #357abd;
+  --rd-color-danger: #e74c3c;
+  --rd-color-danger-hover: #c0392b;
+  --rd-color-success: #2ecc71;
+  --rd-color-success-hover: #27ae60;
+  --rd-color-warning: #f39c12;
+  --rd-color-warning-hover: #e67e22;
+
+  /* Spacing */
+  --rd-space-xs: 0.25rem;
+  --rd-space-sm: 0.5rem;
+  --rd-space-md: 0.75rem;
+  --rd-space-lg: 1rem;
+  --rd-space-xl: 1.5rem;
+  --rd-space-2xl: 2rem;
+
+  /* Border radius */
+  --rd-radius-sm: 4px;
+  --rd-radius-md: 6px;
+  --rd-radius-lg: 8px;
+  --rd-radius-full: 9999px;
+
+  /* Typography */
+  --rd-font-sans: system-ui, -apple-system, sans-serif;
+  --rd-font-mono: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  --rd-font-size-xs: 0.75rem;
+  --rd-font-size-sm: 0.85rem;
+  --rd-font-size-base: 1rem;
+  --rd-font-size-lg: 1.15rem;
+  --rd-font-size-xl: 1.4rem;
+  --rd-font-size-2xl: 1.8rem;
+  --rd-font-size-3xl: 2.5rem;
+  --rd-line-height: 1.6;
+
+  /* Shadows */
+  --rd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --rd-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --rd-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --rd-transition: 150ms ease;
+}

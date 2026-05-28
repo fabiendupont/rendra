@@ -1,0 +1,29 @@
+/* Rendra UI — Tooltip */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+  font-size: var(--rd-font-size-xs);
+  color: var(--rd-color-text-strong);
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-sm);
+  box-shadow: var(--rd-shadow-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--rd-transition);
+  z-index: 1500;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+}

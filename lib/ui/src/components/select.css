@@ -1,0 +1,28 @@
+/* Rendra UI — Select */
+
+.rd-select {
+  display: block;
+  width: 100%;
+  padding: var(--rd-space-sm) var(--rd-space-2xl) var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e0e0e0' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--rd-space-sm) center;
+  transition: border-color var(--rd-transition);
+}
+
+.rd-select:focus {
+  border-color: var(--rd-color-primary);
+}
+
+.rd-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

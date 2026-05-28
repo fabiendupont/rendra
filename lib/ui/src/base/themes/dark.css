@@ -1,0 +1,16 @@
+/* Rendra UI — Dark Theme (default) */
+
+[data-theme="dark"] {
+  --rd-color-bg-base: #1a1a2e;
+  --rd-color-bg-surface: #16213e;
+  --rd-color-bg-elevated: #1e1e3a;
+  --rd-color-bg-input: #2a2a4e;
+  --rd-color-border: #2a2a4a;
+  --rd-color-border-strong: #4a4a6a;
+  --rd-color-text: #e0e0e0;
+  --rd-color-text-strong: #ffffff;
+  --rd-color-text-muted: rgba(255, 255, 255, 0.5);
+  --rd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --rd-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --rd-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,28 @@
+/* Rendra UI — Breadcrumb */
+
+.rd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: var(--rd-font-size-sm);
+}
+
+.rd-breadcrumb-item {
+  color: var(--rd-color-text-muted);
+  transition: color var(--rd-transition);
+}
+
+.rd-breadcrumb-item:hover {
+  color: var(--rd-color-text);
+}
+
+.rd-breadcrumb-item:last-child {
+  color: var(--rd-color-text);
+  pointer-events: none;
+}
+
+.rd-breadcrumb-item + .rd-breadcrumb-item::before {
+  content: '/';
+  margin: 0 var(--rd-space-sm);
+  color: var(--rd-color-text-muted);
+}

@@ -1,0 +1,1245 @@
+/* Rendra UI — Reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* Rendra UI — Design Tokens */
+
+:root {
+  /* Background */
+  --rd-color-bg-base: #1a1a2e;
+  --rd-color-bg-surface: #16213e;
+  --rd-color-bg-elevated: #1e1e3a;
+  --rd-color-bg-input: #2a2a4e;
+
+  /* Borders */
+  --rd-color-border: #2a2a4a;
+  --rd-color-border-strong: #4a4a6a;
+
+  /* Text */
+  --rd-color-text: #e0e0e0;
+  --rd-color-text-strong: #ffffff;
+  --rd-color-text-muted: rgba(255, 255, 255, 0.5);
+
+  /* Accent colors */
+  --rd-color-primary: #4a90d9;
+  --rd-color-primary-hover: #357abd;
+  --rd-color-danger: #e74c3c;
+  --rd-color-danger-hover: #c0392b;
+  --rd-color-success: #2ecc71;
+  --rd-color-success-hover: #27ae60;
+  --rd-color-warning: #f39c12;
+  --rd-color-warning-hover: #e67e22;
+
+  /* Spacing */
+  --rd-space-xs: 0.25rem;
+  --rd-space-sm: 0.5rem;
+  --rd-space-md: 0.75rem;
+  --rd-space-lg: 1rem;
+  --rd-space-xl: 1.5rem;
+  --rd-space-2xl: 2rem;
+
+  /* Border radius */
+  --rd-radius-sm: 4px;
+  --rd-radius-md: 6px;
+  --rd-radius-lg: 8px;
+  --rd-radius-full: 9999px;
+
+  /* Typography */
+  --rd-font-sans: system-ui, -apple-system, sans-serif;
+  --rd-font-mono: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  --rd-font-size-xs: 0.75rem;
+  --rd-font-size-sm: 0.85rem;
+  --rd-font-size-base: 1rem;
+  --rd-font-size-lg: 1.15rem;
+  --rd-font-size-xl: 1.4rem;
+  --rd-font-size-2xl: 1.8rem;
+  --rd-font-size-3xl: 2.5rem;
+  --rd-line-height: 1.6;
+
+  /* Shadows */
+  --rd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --rd-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --rd-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --rd-transition: 150ms ease;
+}
+/* Rendra UI — Dark Theme (default) */
+
+[data-theme="dark"] {
+  --rd-color-bg-base: #1a1a2e;
+  --rd-color-bg-surface: #16213e;
+  --rd-color-bg-elevated: #1e1e3a;
+  --rd-color-bg-input: #2a2a4e;
+  --rd-color-border: #2a2a4a;
+  --rd-color-border-strong: #4a4a6a;
+  --rd-color-text: #e0e0e0;
+  --rd-color-text-strong: #ffffff;
+  --rd-color-text-muted: rgba(255, 255, 255, 0.5);
+  --rd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --rd-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --rd-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+/* Rendra UI — Light Theme */
+
+[data-theme="light"] {
+  --rd-color-bg-base: #ffffff;
+  --rd-color-bg-surface: #f5f5f7;
+  --rd-color-bg-elevated: #ffffff;
+  --rd-color-bg-input: #f0f0f2;
+  --rd-color-border: #d1d1d6;
+  --rd-color-border-strong: #a1a1aa;
+  --rd-color-text: #1a1a2e;
+  --rd-color-text-strong: #000000;
+  --rd-color-text-muted: rgba(0, 0, 0, 0.5);
+  --rd-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --rd-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --rd-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+/* Rendra UI — Typography */
+
+body {
+  font-family: var(--rd-font-sans);
+  font-size: var(--rd-font-size-base);
+  line-height: var(--rd-line-height);
+  color: var(--rd-color-text);
+  background-color: var(--rd-color-bg-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--rd-color-text-strong);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: var(--rd-font-size-3xl); }
+h2 { font-size: var(--rd-font-size-2xl); }
+h3 { font-size: var(--rd-font-size-xl); }
+h4 { font-size: var(--rd-font-size-lg); }
+h5 { font-size: var(--rd-font-size-base); }
+h6 { font-size: var(--rd-font-size-sm); }
+
+code,
+kbd,
+samp {
+  font-family: var(--rd-font-mono);
+  font-size: var(--rd-font-size-sm);
+  background: var(--rd-color-bg-input);
+  padding: 0.15em 0.4em;
+  border-radius: var(--rd-radius-sm);
+}
+
+pre {
+  font-family: var(--rd-font-mono);
+  font-size: var(--rd-font-size-sm);
+  background: var(--rd-color-bg-input);
+  padding: var(--rd-space-lg);
+  border-radius: var(--rd-radius-md);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+small {
+  font-size: var(--rd-font-size-xs);
+  color: var(--rd-color-text-muted);
+}
+
+.rd-mono {
+  font-family: var(--rd-font-mono);
+}
+/* Rendra UI — App Shell */
+
+.rd-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.rd-app-body {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+}
+/* Rendra UI — Grid */
+
+.rd-grid {
+  display: grid;
+  gap: var(--rd-space-lg);
+}
+
+.rd-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.rd-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rd-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.rd-gap-sm {
+  gap: var(--rd-space-sm);
+}
+
+.rd-gap-md {
+  gap: var(--rd-space-md);
+}
+
+.rd-gap-lg {
+  gap: var(--rd-space-lg);
+}
+/* Rendra UI — Accordion */
+
+.rd-accordion {
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  overflow: hidden;
+}
+
+.rd-accordion-item {
+  border-bottom: 1px solid var(--rd-color-border);
+}
+
+.rd-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.rd-accordion-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--rd-space-md) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  font-weight: 500;
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-surface);
+  border: none;
+  cursor: pointer;
+  transition: background var(--rd-transition);
+  text-align: left;
+}
+
+.rd-accordion-header:hover {
+  background: var(--rd-color-bg-input);
+}
+
+.rd-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--rd-transition);
+}
+
+.rd-accordion-item.active .rd-accordion-content {
+  max-height: 500px;
+}
+
+.rd-accordion-content > * {
+  padding: var(--rd-space-md) var(--rd-space-lg);
+}
+/* Rendra UI — Avatar */
+
+.rd-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--rd-radius-full);
+  background: var(--rd-color-bg-input);
+  color: var(--rd-color-text-muted);
+  font-size: var(--rd-font-size-sm);
+  font-weight: 600;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.rd-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rd-avatar-sm {
+  width: 28px;
+  height: 28px;
+  font-size: var(--rd-font-size-xs);
+}
+
+.rd-avatar-lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--rd-font-size-lg);
+}
+/* Rendra UI — Badge */
+
+.rd-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15em 0.5em;
+  font-size: var(--rd-font-size-xs);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border-radius: var(--rd-radius-full);
+  white-space: nowrap;
+}
+
+.rd-badge-primary {
+  background: var(--rd-color-primary);
+  color: #fff;
+}
+
+.rd-badge-danger {
+  background: var(--rd-color-danger);
+  color: #fff;
+}
+
+.rd-badge-success {
+  background: var(--rd-color-success);
+  color: #fff;
+}
+
+.rd-badge-warning {
+  background: var(--rd-color-warning);
+  color: #fff;
+}
+/* Rendra UI — Breadcrumb */
+
+.rd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: var(--rd-font-size-sm);
+}
+
+.rd-breadcrumb-item {
+  color: var(--rd-color-text-muted);
+  transition: color var(--rd-transition);
+}
+
+.rd-breadcrumb-item:hover {
+  color: var(--rd-color-text);
+}
+
+.rd-breadcrumb-item:last-child {
+  color: var(--rd-color-text);
+  pointer-events: none;
+}
+
+.rd-breadcrumb-item + .rd-breadcrumb-item::before {
+  content: '/';
+  margin: 0 var(--rd-space-sm);
+  color: var(--rd-color-text-muted);
+}
+/* Rendra UI — Button */
+
+.rd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rd-space-sm);
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.rd-btn:hover {
+  border-color: var(--rd-color-border-strong);
+  background: var(--rd-color-bg-input);
+}
+
+.rd-btn:active {
+  transform: scale(0.98);
+}
+
+.rd-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rd-btn:disabled:hover {
+  transform: none;
+}
+
+/* Variants */
+.rd-btn-primary {
+  background: var(--rd-color-primary);
+  border-color: var(--rd-color-primary);
+  color: #fff;
+}
+
+.rd-btn-primary:hover {
+  background: var(--rd-color-primary-hover);
+  border-color: var(--rd-color-primary-hover);
+}
+
+.rd-btn-danger {
+  background: var(--rd-color-danger);
+  border-color: var(--rd-color-danger);
+  color: #fff;
+}
+
+.rd-btn-danger:hover {
+  background: var(--rd-color-danger-hover);
+  border-color: var(--rd-color-danger-hover);
+}
+
+.rd-btn-success {
+  background: var(--rd-color-success);
+  border-color: var(--rd-color-success);
+  color: #fff;
+}
+
+.rd-btn-success:hover {
+  background: var(--rd-color-success-hover);
+  border-color: var(--rd-color-success-hover);
+}
+
+.rd-btn-warning {
+  background: var(--rd-color-warning);
+  border-color: var(--rd-color-warning);
+  color: #fff;
+}
+
+.rd-btn-warning:hover {
+  background: var(--rd-color-warning-hover);
+  border-color: var(--rd-color-warning-hover);
+}
+
+.rd-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.rd-btn-ghost:hover {
+  background: var(--rd-color-bg-input);
+  border-color: transparent;
+}
+
+/* Sizes */
+.rd-btn-sm {
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+  font-size: var(--rd-font-size-xs);
+}
+
+.rd-btn-lg {
+  padding: var(--rd-space-md) var(--rd-space-xl);
+  font-size: var(--rd-font-size-base);
+}
+
+/* Icon button */
+.rd-btn-icon {
+  padding: var(--rd-space-sm);
+  aspect-ratio: 1;
+}
+
+/* Button group */
+.rd-btn-group {
+  display: inline-flex;
+}
+
+.rd-btn-group .rd-btn {
+  border-radius: 0;
+}
+
+.rd-btn-group .rd-btn:first-child {
+  border-radius: var(--rd-radius-md) 0 0 var(--rd-radius-md);
+}
+
+.rd-btn-group .rd-btn:last-child {
+  border-radius: 0 var(--rd-radius-md) var(--rd-radius-md) 0;
+}
+
+.rd-btn-group .rd-btn + .rd-btn {
+  margin-left: -1px;
+}
+/* Rendra UI — Card */
+
+.rd-card {
+  background: var(--rd-color-bg-surface);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-lg);
+  overflow: hidden;
+}
+
+.rd-card-header {
+  padding: var(--rd-space-lg);
+  border-bottom: 1px solid var(--rd-color-border);
+  font-weight: 600;
+  color: var(--rd-color-text-strong);
+}
+
+.rd-card-body {
+  padding: var(--rd-space-lg);
+}
+
+.rd-card-footer {
+  padding: var(--rd-space-lg);
+  border-top: 1px solid var(--rd-color-border);
+}
+/* Rendra UI — Checkbox */
+
+.rd-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  cursor: pointer;
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  user-select: none;
+}
+
+.rd-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--rd-color-border-strong);
+  border-radius: var(--rd-radius-sm);
+  background: var(--rd-color-bg-input);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  flex-shrink: 0;
+}
+
+.rd-checkbox input[type="checkbox"]:checked {
+  background: var(--rd-color-primary);
+  border-color: var(--rd-color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M10 3L5 8 2 5' stroke='%23fff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.rd-checkbox input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Rendra UI — Dropdown */
+
+.rd-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.rd-dropdown-trigger {
+  cursor: pointer;
+}
+
+.rd-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  box-shadow: var(--rd-shadow-md);
+  padding: var(--rd-space-xs) 0;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: all var(--rd-transition);
+}
+
+.rd-dropdown.active .rd-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.rd-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--rd-transition);
+}
+
+.rd-dropdown-item:hover {
+  background: var(--rd-color-bg-input);
+}
+/* Rendra UI — Input */
+
+.rd-input {
+  display: block;
+  width: 100%;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  outline: none;
+  transition: border-color var(--rd-transition);
+}
+
+.rd-input:focus {
+  border-color: var(--rd-color-primary);
+}
+
+.rd-input::placeholder {
+  color: var(--rd-color-text-muted);
+}
+
+.rd-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.rd-input-sm {
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+  font-size: var(--rd-font-size-xs);
+}
+
+.rd-input-lg {
+  padding: var(--rd-space-md) var(--rd-space-lg);
+  font-size: var(--rd-font-size-base);
+}
+
+/* Input group */
+.rd-input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.rd-input-group .rd-input {
+  border-radius: 0;
+  flex: 1;
+}
+
+.rd-input-group .rd-input:first-child {
+  border-radius: var(--rd-radius-md) 0 0 var(--rd-radius-md);
+}
+
+.rd-input-group .rd-input:last-child {
+  border-radius: 0 var(--rd-radius-md) var(--rd-radius-md) 0;
+}
+
+.rd-input-addon {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text-muted);
+  background: var(--rd-color-bg-surface);
+  border: 1px solid var(--rd-color-border);
+  white-space: nowrap;
+}
+
+.rd-input-addon:first-child {
+  border-right: none;
+  border-radius: var(--rd-radius-md) 0 0 var(--rd-radius-md);
+}
+
+.rd-input-addon:last-child {
+  border-left: none;
+  border-radius: 0 var(--rd-radius-md) var(--rd-radius-md) 0;
+}
+/* Rendra UI — Modal */
+
+.rd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--rd-transition), visibility var(--rd-transition);
+  z-index: 1000;
+}
+
+.rd-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rd-modal {
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-lg);
+  box-shadow: var(--rd-shadow-lg);
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rd-modal-header {
+  padding: var(--rd-space-lg);
+  border-bottom: 1px solid var(--rd-color-border);
+  font-weight: 600;
+  color: var(--rd-color-text-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rd-modal-body {
+  padding: var(--rd-space-lg);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.rd-modal-footer {
+  padding: var(--rd-space-lg);
+  border-top: 1px solid var(--rd-color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--rd-space-sm);
+}
+/* Rendra UI — Pagination */
+
+.rd-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-xs);
+}
+
+.rd-pagination-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 var(--rd-space-sm);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: none;
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+}
+
+.rd-pagination-item:hover {
+  background: var(--rd-color-bg-input);
+  border-color: var(--rd-color-border-strong);
+}
+
+.rd-pagination-item.active {
+  background: var(--rd-color-primary);
+  border-color: var(--rd-color-primary);
+  color: #fff;
+}
+/* Rendra UI — Progress */
+
+.rd-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--rd-color-bg-input);
+  border-radius: var(--rd-radius-full);
+  overflow: hidden;
+}
+
+.rd-progress-bar {
+  height: 100%;
+  background: var(--rd-color-primary);
+  border-radius: var(--rd-radius-full);
+  transition: width 300ms ease;
+}
+
+/* Styled native progress element */
+progress.rd-progress {
+  appearance: none;
+  border: none;
+}
+
+progress.rd-progress::-webkit-progress-bar {
+  background: var(--rd-color-bg-input);
+  border-radius: var(--rd-radius-full);
+}
+
+progress.rd-progress::-webkit-progress-value {
+  background: var(--rd-color-primary);
+  border-radius: var(--rd-radius-full);
+}
+
+progress.rd-progress::-moz-progress-bar {
+  background: var(--rd-color-primary);
+  border-radius: var(--rd-radius-full);
+}
+/* Rendra UI — Radio */
+
+.rd-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  cursor: pointer;
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  user-select: none;
+}
+
+.rd-radio input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--rd-color-border-strong);
+  border-radius: var(--rd-radius-full);
+  background: var(--rd-color-bg-input);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  flex-shrink: 0;
+}
+
+.rd-radio input[type="radio"]:checked {
+  border-color: var(--rd-color-primary);
+  background: var(--rd-color-bg-input);
+  box-shadow: inset 0 0 0 4px var(--rd-color-primary);
+}
+
+.rd-radio input[type="radio"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Rendra UI — Select */
+
+.rd-select {
+  display: block;
+  width: 100%;
+  padding: var(--rd-space-sm) var(--rd-space-2xl) var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23e0e0e0' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--rd-space-sm) center;
+  transition: border-color var(--rd-transition);
+}
+
+.rd-select:focus {
+  border-color: var(--rd-color-primary);
+}
+
+.rd-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Rendra UI — Sidebar */
+
+.rd-sidebar {
+  width: 200px;
+  min-width: 200px;
+  background: var(--rd-color-bg-surface);
+  border-right: 1px solid var(--rd-color-border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.rd-sidebar-header {
+  padding: var(--rd-space-md) var(--rd-space-lg);
+  font-size: var(--rd-font-size-xs);
+  font-weight: 600;
+  color: var(--rd-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rd-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  cursor: pointer;
+  transition: background var(--rd-transition);
+}
+
+.rd-sidebar-item:hover {
+  background: var(--rd-color-bg-input);
+}
+
+.rd-sidebar-item.active {
+  color: var(--rd-color-primary);
+  background: var(--rd-color-bg-elevated);
+}
+/* Rendra UI — Spinner */
+
+.rd-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--rd-color-border);
+  border-top-color: var(--rd-color-primary);
+  border-radius: var(--rd-radius-full);
+  animation: rd-spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+.rd-spinner-sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.rd-spinner-lg {
+  width: 40px;
+  height: 40px;
+  border-width: 4px;
+}
+
+@keyframes rd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Rendra UI — Split Pane */
+
+.rd-split {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.rd-split-pane {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+}
+/* Rendra UI — Table */
+
+.rd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--rd-font-size-sm);
+}
+
+.rd-table th {
+  text-align: left;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-weight: 600;
+  color: var(--rd-color-text-muted);
+  font-size: var(--rd-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--rd-color-border-strong);
+}
+
+.rd-table td {
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  border-bottom: 1px solid var(--rd-color-border);
+  color: var(--rd-color-text);
+}
+
+.rd-table tbody tr:nth-child(even) {
+  background: var(--rd-color-bg-surface);
+}
+
+.rd-table tbody tr:hover {
+  background: var(--rd-color-bg-input);
+}
+
+/* Compact */
+.rd-table-compact th,
+.rd-table-compact td {
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+}
+/* Rendra UI — Tabs */
+
+.rd-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--rd-color-border);
+  gap: 0;
+}
+
+.rd-tab {
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  white-space: nowrap;
+}
+
+.rd-tab:hover {
+  color: var(--rd-color-text);
+}
+
+.rd-tab.active {
+  color: var(--rd-color-primary);
+  border-bottom-color: var(--rd-color-primary);
+}
+
+.rd-tab-panel {
+  display: none;
+  padding: var(--rd-space-lg) 0;
+}
+
+.rd-tab-panel.active {
+  display: block;
+}
+/* Rendra UI — Textarea */
+
+.rd-textarea {
+  display: block;
+  width: 100%;
+  min-height: 80px;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  font-family: var(--rd-font-sans);
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--rd-transition);
+}
+
+.rd-textarea:focus {
+  border-color: var(--rd-color-primary);
+}
+
+.rd-textarea::placeholder {
+  color: var(--rd-color-text-muted);
+}
+
+.rd-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Rendra UI — Toast */
+
+.rd-toast-container {
+  position: fixed;
+  bottom: var(--rd-space-lg);
+  right: var(--rd-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rd-space-sm);
+  z-index: 2000;
+}
+
+.rd-toast {
+  padding: var(--rd-space-md) var(--rd-space-lg);
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  box-shadow: var(--rd-shadow-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.rd-toast-success {
+  border-left: 3px solid var(--rd-color-success);
+}
+
+.rd-toast-danger {
+  border-left: 3px solid var(--rd-color-danger);
+}
+
+.rd-toast-warning {
+  border-left: 3px solid var(--rd-color-warning);
+}
+/* Rendra UI — Toggle (CSS-only switch) */
+
+.rd-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  cursor: pointer;
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  user-select: none;
+}
+
+.rd-toggle input[type="checkbox"] {
+  appearance: none;
+  width: 40px;
+  height: 22px;
+  border-radius: var(--rd-radius-full);
+  background: var(--rd-color-border-strong);
+  cursor: pointer;
+  transition: background var(--rd-transition);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rd-toggle input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--rd-radius-full);
+  background: #fff;
+  transition: transform var(--rd-transition);
+}
+
+.rd-toggle input[type="checkbox"]:checked {
+  background: var(--rd-color-primary);
+}
+
+.rd-toggle input[type="checkbox"]:checked::after {
+  transform: translateX(18px);
+}
+
+.rd-toggle input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* Rendra UI — Toolbar */
+
+.rd-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  background: var(--rd-color-bg-surface);
+  border-bottom: 1px solid var(--rd-color-border);
+  min-height: 40px;
+}
+/* Rendra UI — Tooltip */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+  font-size: var(--rd-font-size-xs);
+  color: var(--rd-color-text-strong);
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-sm);
+  box-shadow: var(--rd-shadow-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--rd-transition);
+  z-index: 1500;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+}
+/* Rendra UI — Tree */
+
+.rd-tree {
+  font-size: var(--rd-font-size-sm);
+}
+
+.rd-tree-node {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-xs);
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+  cursor: pointer;
+  color: var(--rd-color-text);
+  border-radius: var(--rd-radius-sm);
+  transition: background var(--rd-transition);
+}
+
+.rd-tree-node:hover {
+  background: var(--rd-color-bg-input);
+}
+
+.rd-tree-node.active {
+  color: var(--rd-color-primary);
+  background: var(--rd-color-bg-elevated);
+}
+
+.rd-tree-children {
+  padding-left: var(--rd-space-lg);
+  display: none;
+}
+
+.rd-tree-children.expanded {
+  display: block;
+}

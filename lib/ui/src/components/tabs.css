@@ -1,0 +1,37 @@
+/* Rendra UI — Tabs */
+
+.rd-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--rd-color-border);
+  gap: 0;
+}
+
+.rd-tab {
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  white-space: nowrap;
+}
+
+.rd-tab:hover {
+  color: var(--rd-color-text);
+}
+
+.rd-tab.active {
+  color: var(--rd-color-primary);
+  border-bottom-color: var(--rd-color-primary);
+}
+
+.rd-tab-panel {
+  display: none;
+  padding: var(--rd-space-lg) 0;
+}
+
+.rd-tab-panel.active {
+  display: block;
+}

@@ -1,0 +1,24 @@
+/* Rendra UI — Card */
+
+.rd-card {
+  background: var(--rd-color-bg-surface);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-lg);
+  overflow: hidden;
+}
+
+.rd-card-header {
+  padding: var(--rd-space-lg);
+  border-bottom: 1px solid var(--rd-color-border);
+  font-weight: 600;
+  color: var(--rd-color-text-strong);
+}
+
+.rd-card-body {
+  padding: var(--rd-space-lg);
+}
+
+.rd-card-footer {
+  padding: var(--rd-space-lg);
+  border-top: 1px solid var(--rd-color-border);
+}

@@ -1,0 +1,35 @@
+/* Rendra UI — Toast */
+
+.rd-toast-container {
+  position: fixed;
+  bottom: var(--rd-space-lg);
+  right: var(--rd-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--rd-space-sm);
+  z-index: 2000;
+}
+
+.rd-toast {
+  padding: var(--rd-space-md) var(--rd-space-lg);
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  box-shadow: var(--rd-shadow-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.rd-toast-success {
+  border-left: 3px solid var(--rd-color-success);
+}
+
+.rd-toast-danger {
+  border-left: 3px solid var(--rd-color-danger);
+}
+
+.rd-toast-warning {
+  border-left: 3px solid var(--rd-color-warning);
+}

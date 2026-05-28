@@ -1,0 +1,131 @@
+/* Rendra UI — Button */
+
+.rd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rd-space-sm);
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.rd-btn:hover {
+  border-color: var(--rd-color-border-strong);
+  background: var(--rd-color-bg-input);
+}
+
+.rd-btn:active {
+  transform: scale(0.98);
+}
+
+.rd-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rd-btn:disabled:hover {
+  transform: none;
+}
+
+/* Variants */
+.rd-btn-primary {
+  background: var(--rd-color-primary);
+  border-color: var(--rd-color-primary);
+  color: #fff;
+}
+
+.rd-btn-primary:hover {
+  background: var(--rd-color-primary-hover);
+  border-color: var(--rd-color-primary-hover);
+}
+
+.rd-btn-danger {
+  background: var(--rd-color-danger);
+  border-color: var(--rd-color-danger);
+  color: #fff;
+}
+
+.rd-btn-danger:hover {
+  background: var(--rd-color-danger-hover);
+  border-color: var(--rd-color-danger-hover);
+}
+
+.rd-btn-success {
+  background: var(--rd-color-success);
+  border-color: var(--rd-color-success);
+  color: #fff;
+}
+
+.rd-btn-success:hover {
+  background: var(--rd-color-success-hover);
+  border-color: var(--rd-color-success-hover);
+}
+
+.rd-btn-warning {
+  background: var(--rd-color-warning);
+  border-color: var(--rd-color-warning);
+  color: #fff;
+}
+
+.rd-btn-warning:hover {
+  background: var(--rd-color-warning-hover);
+  border-color: var(--rd-color-warning-hover);
+}
+
+.rd-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.rd-btn-ghost:hover {
+  background: var(--rd-color-bg-input);
+  border-color: transparent;
+}
+
+/* Sizes */
+.rd-btn-sm {
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+  font-size: var(--rd-font-size-xs);
+}
+
+.rd-btn-lg {
+  padding: var(--rd-space-md) var(--rd-space-xl);
+  font-size: var(--rd-font-size-base);
+}
+
+/* Icon button */
+.rd-btn-icon {
+  padding: var(--rd-space-sm);
+  aspect-ratio: 1;
+}
+
+/* Button group */
+.rd-btn-group {
+  display: inline-flex;
+}
+
+.rd-btn-group .rd-btn {
+  border-radius: 0;
+}
+
+.rd-btn-group .rd-btn:first-child {
+  border-radius: var(--rd-radius-md) 0 0 var(--rd-radius-md);
+}
+
+.rd-btn-group .rd-btn:last-child {
+  border-radius: 0 var(--rd-radius-md) var(--rd-radius-md) 0;
+}
+
+.rd-btn-group .rd-btn + .rd-btn {
+  margin-left: -1px;
+}

@@ -1,0 +1,11 @@
+/* Rendra UI — Toolbar */
+
+.rd-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  background: var(--rd-color-bg-surface);
+  border-bottom: 1px solid var(--rd-color-border);
+  min-height: 40px;
+}

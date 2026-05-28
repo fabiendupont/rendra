@@ -1,0 +1,34 @@
+/* Rendra UI — Avatar */
+
+.rd-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--rd-radius-full);
+  background: var(--rd-color-bg-input);
+  color: var(--rd-color-text-muted);
+  font-size: var(--rd-font-size-sm);
+  font-weight: 600;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.rd-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rd-avatar-sm {
+  width: 28px;
+  height: 28px;
+  font-size: var(--rd-font-size-xs);
+}
+
+.rd-avatar-lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--rd-font-size-lg);
+}

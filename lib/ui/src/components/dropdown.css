@@ -1,0 +1,50 @@
+/* Rendra UI — Dropdown */
+
+.rd-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.rd-dropdown-trigger {
+  cursor: pointer;
+}
+
+.rd-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  box-shadow: var(--rd-shadow-md);
+  padding: var(--rd-space-xs) 0;
+  z-index: 500;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: all var(--rd-transition);
+}
+
+.rd-dropdown.active .rd-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.rd-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--rd-transition);
+}
+
+.rd-dropdown-item:hover {
+  background: var(--rd-color-bg-input);
+}

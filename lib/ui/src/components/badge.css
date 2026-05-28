@@ -1,0 +1,34 @@
+/* Rendra UI — Badge */
+
+.rd-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15em 0.5em;
+  font-size: var(--rd-font-size-xs);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border-radius: var(--rd-radius-full);
+  white-space: nowrap;
+}
+
+.rd-badge-primary {
+  background: var(--rd-color-primary);
+  color: #fff;
+}
+
+.rd-badge-danger {
+  background: var(--rd-color-danger);
+  color: #fff;
+}
+
+.rd-badge-success {
+  background: var(--rd-color-success);
+  color: #fff;
+}
+
+.rd-badge-warning {
+  background: var(--rd-color-warning);
+  color: #fff;
+}

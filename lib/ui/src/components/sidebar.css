@@ -1,0 +1,40 @@
+/* Rendra UI — Sidebar */
+
+.rd-sidebar {
+  width: 200px;
+  min-width: 200px;
+  background: var(--rd-color-bg-surface);
+  border-right: 1px solid var(--rd-color-border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.rd-sidebar-header {
+  padding: var(--rd-space-md) var(--rd-space-lg);
+  font-size: var(--rd-font-size-xs);
+  font-weight: 600;
+  color: var(--rd-color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.rd-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  padding: var(--rd-space-sm) var(--rd-space-lg);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  cursor: pointer;
+  transition: background var(--rd-transition);
+}
+
+.rd-sidebar-item:hover {
+  background: var(--rd-color-bg-input);
+}
+
+.rd-sidebar-item.active {
+  color: var(--rd-color-primary);
+  background: var(--rd-color-bg-elevated);
+}

@@ -1,0 +1,34 @@
+/* Rendra UI — Pagination */
+
+.rd-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--rd-space-xs);
+}
+
+.rd-pagination-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 var(--rd-space-sm);
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  background: none;
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+}
+
+.rd-pagination-item:hover {
+  background: var(--rd-color-bg-input);
+  border-color: var(--rd-color-border-strong);
+}
+
+.rd-pagination-item.active {
+  background: var(--rd-color-primary);
+  border-color: var(--rd-color-primary);
+  color: #fff;
+}

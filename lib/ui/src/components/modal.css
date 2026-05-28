@@ -1,0 +1,56 @@
+/* Rendra UI — Modal */
+
+.rd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--rd-transition), visibility var(--rd-transition);
+  z-index: 1000;
+}
+
+.rd-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rd-modal {
+  background: var(--rd-color-bg-elevated);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-lg);
+  box-shadow: var(--rd-shadow-lg);
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rd-modal-header {
+  padding: var(--rd-space-lg);
+  border-bottom: 1px solid var(--rd-color-border);
+  font-weight: 600;
+  color: var(--rd-color-text-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rd-modal-body {
+  padding: var(--rd-space-lg);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.rd-modal-footer {
+  padding: var(--rd-space-lg);
+  border-top: 1px solid var(--rd-color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--rd-space-sm);
+}

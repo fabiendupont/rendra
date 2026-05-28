@@ -1,0 +1,36 @@
+/* Rendra UI — Checkbox */
+
+.rd-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  cursor: pointer;
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  user-select: none;
+}
+
+.rd-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--rd-color-border-strong);
+  border-radius: var(--rd-radius-sm);
+  background: var(--rd-color-bg-input);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  flex-shrink: 0;
+}
+
+.rd-checkbox input[type="checkbox"]:checked {
+  background: var(--rd-color-primary);
+  border-color: var(--rd-color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23fff' d='M10 3L5 8 2 5' stroke='%23fff' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.rd-checkbox input[type="checkbox"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

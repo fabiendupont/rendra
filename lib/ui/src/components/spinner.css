@@ -1,0 +1,29 @@
+/* Rendra UI — Spinner */
+
+.rd-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--rd-color-border);
+  border-top-color: var(--rd-color-primary);
+  border-radius: var(--rd-radius-full);
+  animation: rd-spin 0.6s linear infinite;
+  display: inline-block;
+}
+
+.rd-spinner-sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.rd-spinner-lg {
+  width: 40px;
+  height: 40px;
+  border-width: 4px;
+}
+
+@keyframes rd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

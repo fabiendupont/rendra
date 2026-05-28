@@ -1,0 +1,30 @@
+/* Rendra UI — Textarea */
+
+.rd-textarea {
+  display: block;
+  width: 100%;
+  min-height: 80px;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-size: var(--rd-font-size-sm);
+  font-family: var(--rd-font-sans);
+  color: var(--rd-color-text);
+  background: var(--rd-color-bg-input);
+  border: 1px solid var(--rd-color-border);
+  border-radius: var(--rd-radius-md);
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--rd-transition);
+}
+
+.rd-textarea:focus {
+  border-color: var(--rd-color-primary);
+}
+
+.rd-textarea::placeholder {
+  color: var(--rd-color-text-muted);
+}
+
+.rd-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

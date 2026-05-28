@@ -1,0 +1,30 @@
+/* Rendra UI — Grid */
+
+.rd-grid {
+  display: grid;
+  gap: var(--rd-space-lg);
+}
+
+.rd-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.rd-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.rd-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.rd-gap-sm {
+  gap: var(--rd-space-sm);
+}
+
+.rd-gap-md {
+  gap: var(--rd-space-md);
+}
+
+.rd-gap-lg {
+  gap: var(--rd-space-lg);
+}

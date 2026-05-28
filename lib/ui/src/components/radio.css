@@ -1,0 +1,34 @@
+/* Rendra UI — Radio */
+
+.rd-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rd-space-sm);
+  cursor: pointer;
+  font-size: var(--rd-font-size-sm);
+  color: var(--rd-color-text);
+  user-select: none;
+}
+
+.rd-radio input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--rd-color-border-strong);
+  border-radius: var(--rd-radius-full);
+  background: var(--rd-color-bg-input);
+  cursor: pointer;
+  transition: all var(--rd-transition);
+  flex-shrink: 0;
+}
+
+.rd-radio input[type="radio"]:checked {
+  border-color: var(--rd-color-primary);
+  background: var(--rd-color-bg-input);
+  box-shadow: inset 0 0 0 4px var(--rd-color-primary);
+}
+
+.rd-radio input[type="radio"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

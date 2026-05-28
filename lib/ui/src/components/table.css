@@ -1,0 +1,38 @@
+/* Rendra UI — Table */
+
+.rd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--rd-font-size-sm);
+}
+
+.rd-table th {
+  text-align: left;
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  font-weight: 600;
+  color: var(--rd-color-text-muted);
+  font-size: var(--rd-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--rd-color-border-strong);
+}
+
+.rd-table td {
+  padding: var(--rd-space-sm) var(--rd-space-md);
+  border-bottom: 1px solid var(--rd-color-border);
+  color: var(--rd-color-text);
+}
+
+.rd-table tbody tr:nth-child(even) {
+  background: var(--rd-color-bg-surface);
+}
+
+.rd-table tbody tr:hover {
+  background: var(--rd-color-bg-input);
+}
+
+/* Compact */
+.rd-table-compact th,
+.rd-table-compact td {
+  padding: var(--rd-space-xs) var(--rd-space-sm);
+}
