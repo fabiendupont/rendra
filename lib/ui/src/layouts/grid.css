@@ -1,20 +1,24 @@
-/* Rendra UI — Grid */
+/* Rendra UI — Grid (flexbox-based for Servo compatibility) */
 
 .rd-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--rd-space-lg);
 }
 
-.rd-grid-2 {
-  grid-template-columns: repeat(2, 1fr);
+.rd-grid-2 > * {
+  flex: 1 1 calc(50% - var(--rd-space-lg));
+  min-width: 200px;
 }
 
-.rd-grid-3 {
-  grid-template-columns: repeat(3, 1fr);
+.rd-grid-3 > * {
+  flex: 1 1 calc(33.333% - var(--rd-space-lg));
+  min-width: 200px;
 }
 
-.rd-grid-4 {
-  grid-template-columns: repeat(4, 1fr);
+.rd-grid-4 > * {
+  flex: 1 1 calc(25% - var(--rd-space-lg));
+  min-width: 150px;
 }
 
 .rd-gap-sm {
