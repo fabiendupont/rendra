@@ -10,6 +10,7 @@ members = [
     "runtime-bindgen",
     "examples/hello-world",
     "examples/markdown-notes",
+    "examples/showcase",
 ]
 
 [workspace.package]

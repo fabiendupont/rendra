@@ -1,0 +1,9 @@
+[app]
+name = "showcase"
+version = "0.1.0"
+description = "Rendra UI Component Showcase"
+
+[window]
+title = "Rendra UI Showcase"
+width = 1400
+height = 900

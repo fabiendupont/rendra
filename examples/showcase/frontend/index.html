@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rendra UI Showcase</title>
+  <link rel="stylesheet" href="../../../lib/ui/rendra-ui.css">
+  <style>
+    /* Minimal layout-only styles — all component styling comes from Rendra UI */
+    .showcase-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--rd-space-2xl);
+    }
+    .showcase-section {
+      margin-bottom: var(--rd-space-2xl);
+      padding-bottom: var(--rd-space-2xl);
+      border-bottom: 1px solid var(--rd-color-border);
+    }
+    .showcase-section:last-child {
+      border-bottom: none;
+    }
+    .showcase-section h2 {
+      margin-bottom: var(--rd-space-lg);
+    }
+    .showcase-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--rd-space-md);
+      margin-bottom: var(--rd-space-md);
+    }
+    .showcase-label {
+      font-size: var(--rd-font-size-xs);
+      color: var(--rd-color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--rd-space-xs);
+    }
+    .showcase-block {
+      margin-bottom: var(--rd-space-lg);
+    }
+    .showcase-spacer {
+      height: var(--rd-space-md);
+    }
+    .form-field {
+      max-width: 320px;
+      margin-bottom: var(--rd-space-md);
+    }
+    .toolbar-spacer {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="rd-app">
+    <!-- Toolbar -->
+    <div class="rd-toolbar">
+      <strong>Rendra UI Showcase</strong>
+      <div class="toolbar-spacer"></div>
+      <label class="rd-toggle" data-tooltip="Switch theme">
+        <input type="checkbox" id="theme-toggle">
+        <span>Dark Mode</span>
+      </label>
+    </div>
+
+    <div class="rd-app-body">
+      <!-- Sidebar Navigation -->
+      <nav class="rd-sidebar">
+        <div class="rd-sidebar-header">Components</div>
+        <a class="rd-sidebar-item active" href="#typography">Typography</a>
+        <a class="rd-sidebar-item" href="#buttons">Buttons</a>
+        <a class="rd-sidebar-item" href="#form-controls">Form Controls</a>
+        <a class="rd-sidebar-item" href="#cards">Cards</a>
+        <a class="rd-sidebar-item" href="#tables">Tables</a>
+        <a class="rd-sidebar-item" href="#badges">Badges</a>
+        <a class="rd-sidebar-item" href="#progress">Progress</a>
+        <a class="rd-sidebar-item" href="#avatars">Avatars</a>
+        <a class="rd-sidebar-item" href="#spinners">Spinners</a>
+        <a class="rd-sidebar-item" href="#breadcrumbs">Breadcrumbs</a>
+        <a class="rd-sidebar-item" href="#pagination">Pagination</a>
+        <a class="rd-sidebar-item" href="#tabs">Tabs</a>
+        <a class="rd-sidebar-item" href="#accordion">Accordion</a>
+        <a class="rd-sidebar-item" href="#modal">Modal</a>
+        <a class="rd-sidebar-item" href="#dropdown">Dropdown</a>
+        <a class="rd-sidebar-item" href="#toast">Toast</a>
+        <a class="rd-sidebar-item" href="#tooltip">Tooltip</a>
+        <a class="rd-sidebar-item" href="#tree">Tree</a>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="showcase-content">
+
+        <!-- Typography -->
+        <section id="typography" class="showcase-section">
+          <h2>Typography</h2>
+          <div class="showcase-block">
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+          </div>
+          <div class="showcase-block">
+            <p>This is a paragraph of body text. Rendra UI provides a clean, modern design system for building desktop applications with the Servo runtime.</p>
+            <p><small>This is small/muted text for secondary information.</small></p>
+          </div>
+          <div class="showcase-block">
+            <p>Inline <code>code</code> looks like this. Links look like <a href="#typography">this</a>.</p>
+            <pre><code>// A block of code
+fn main() {
+    println!("Hello, Rendra!");
+}</code></pre>
+          </div>
+          <div class="showcase-block">
+            <p class="rd-mono">This is monospace text using the rd-mono class.</p>
+          </div>
+        </section>
+
+        <!-- Buttons -->
+        <section id="buttons" class="showcase-section">
+          <h2>Buttons</h2>
+          <div class="showcase-label">Variants</div>
+          <div class="showcase-row">
+            <button class="rd-btn">Default</button>
+            <button class="rd-btn rd-btn-primary">Primary</button>
+            <button class="rd-btn rd-btn-danger">Danger</button>
+            <button class="rd-btn rd-btn-success">Success</button>
+            <button class="rd-btn rd-btn-warning">Warning</button>
+            <button class="rd-btn rd-btn-ghost">Ghost</button>
+          </div>
+          <div class="showcase-label">Sizes</div>
+          <div class="showcase-row">
+            <button class="rd-btn rd-btn-primary rd-btn-sm">Small</button>
+            <button class="rd-btn rd-btn-primary">Default</button>
+            <button class="rd-btn rd-btn-primary rd-btn-lg">Large</button>
+          </div>
+          <div class="showcase-label">States</div>
+          <div class="showcase-row">
+            <button class="rd-btn rd-btn-primary" disabled>Disabled</button>
+            <button class="rd-btn rd-btn-icon rd-btn-primary" data-tooltip="Icon button">+</button>
+          </div>
+          <div class="showcase-label">Button Group</div>
+          <div class="showcase-row">
+            <div class="rd-btn-group">
+              <button class="rd-btn">Left</button>
+              <button class="rd-btn">Center</button>
+              <button class="rd-btn">Right</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Form Controls -->
+        <section id="form-controls" class="showcase-section">
+          <h2>Form Controls</h2>
+
+          <div class="showcase-label">Text Input</div>
+          <div class="form-field">
+            <input type="text" class="rd-input" placeholder="Default input">
+          </div>
+          <div class="form-field">
+            <input type="text" class="rd-input rd-input-sm" placeholder="Small input">
+          </div>
+          <div class="form-field">
+            <input type="text" class="rd-input rd-input-lg" placeholder="Large input">
+          </div>
+          <div class="form-field">
+            <input type="text" class="rd-input" placeholder="Disabled" disabled>
+          </div>
+
+          <div class="showcase-label">Input Group</div>
+          <div class="form-field">
+            <div class="rd-input-group">
+              <span class="rd-input-addon">https://</span>
+              <input type="text" class="rd-input" placeholder="example.com">
+            </div>
+          </div>
+          <div class="form-field">
+            <div class="rd-input-group">
+              <input type="text" class="rd-input" placeholder="Search...">
+              <span class="rd-input-addon">Go</span>
+            </div>
+          </div>
+
+          <div class="showcase-label">Textarea</div>
+          <div class="form-field">
+            <textarea class="rd-textarea" placeholder="Enter your message..."></textarea>
+          </div>
+
+          <div class="showcase-label">Select</div>
+          <div class="form-field">
+            <select class="rd-select">
+              <option>Choose an option</option>
+              <option>Option One</option>
+              <option>Option Two</option>
+              <option>Option Three</option>
+            </select>
+          </div>
+
+          <div class="showcase-label">Checkboxes</div>
+          <div class="showcase-row">
+            <label class="rd-checkbox"><input type="checkbox" checked> Checked</label>
+            <label class="rd-checkbox"><input type="checkbox"> Unchecked</label>
+            <label class="rd-checkbox"><input type="checkbox" disabled> Disabled</label>
+          </div>
+
+          <div class="showcase-label">Radio Buttons</div>
+          <div class="showcase-row">
+            <label class="rd-radio"><input type="radio" name="radio-demo" checked> Option A</label>
+            <label class="rd-radio"><input type="radio" name="radio-demo"> Option B</label>
+            <label class="rd-radio"><input type="radio" name="radio-demo"> Option C</label>
+          </div>
+
+          <div class="showcase-label">Toggle</div>
+          <div class="showcase-row">
+            <label class="rd-toggle"><input type="checkbox" checked> Enabled</label>
+            <label class="rd-toggle"><input type="checkbox"> Disabled feature</label>
+          </div>
+        </section>
+
+        <!-- Cards -->
+        <section id="cards" class="showcase-section">
+          <h2>Cards</h2>
+          <div class="rd-grid rd-grid-3">
+            <div class="rd-card">
+              <div class="rd-card-header">Card Title</div>
+              <div class="rd-card-body">
+                <p>This is a standard card with a header, body, and footer. Cards are useful for grouping related content.</p>
+              </div>
+              <div class="rd-card-footer">
+                <button class="rd-btn rd-btn-primary rd-btn-sm">Action</button>
+              </div>
+            </div>
+            <div class="rd-card">
+              <div class="rd-card-header">Statistics</div>
+              <div class="rd-card-body">
+                <h3>1,234</h3>
+                <p><small>Active connections</small></p>
+              </div>
+            </div>
+            <div class="rd-card">
+              <div class="rd-card-header">Status</div>
+              <div class="rd-card-body">
+                <p><span class="rd-badge rd-badge-success">Online</span></p>
+                <div class="showcase-spacer"></div>
+                <p>All systems operational. Last check 2 minutes ago.</p>
+              </div>
+              <div class="rd-card-footer">
+                <button class="rd-btn rd-btn-ghost rd-btn-sm">View Details</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tables -->
+        <section id="tables" class="showcase-section">
+          <h2>Tables</h2>
+          <div class="rd-card">
+            <table class="rd-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Size</th>
+                  <th>Modified</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>runtime-core</td>
+                  <td>Crate</td>
+                  <td><span class="rd-badge rd-badge-success">Stable</span></td>
+                  <td>142 KB</td>
+                  <td>2 hours ago</td>
+                </tr>
+                <tr>
+                  <td>runtime-ipc</td>
+                  <td>Crate</td>
+                  <td><span class="rd-badge rd-badge-success">Stable</span></td>
+                  <td>89 KB</td>
+                  <td>5 hours ago</td>
+                </tr>
+                <tr>
+                  <td>runtime-sandbox</td>
+                  <td>Crate</td>
+                  <td><span class="rd-badge rd-badge-warning">Beta</span></td>
+                  <td>203 KB</td>
+                  <td>1 day ago</td>
+                </tr>
+                <tr>
+                  <td>rendra-ui</td>
+                  <td>Library</td>
+                  <td><span class="rd-badge rd-badge-primary">Dev</span></td>
+                  <td>54 KB</td>
+                  <td>Just now</td>
+                </tr>
+                <tr>
+                  <td>servo-engine</td>
+                  <td>External</td>
+                  <td><span class="rd-badge rd-badge-danger">Unstable</span></td>
+                  <td>18.4 MB</td>
+                  <td>3 days ago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Badges -->
+        <section id="badges" class="showcase-section">
+          <h2>Badges</h2>
+          <div class="showcase-row">
+            <span class="rd-badge">Default</span>
+            <span class="rd-badge rd-badge-primary">Primary</span>
+            <span class="rd-badge rd-badge-danger">Danger</span>
+            <span class="rd-badge rd-badge-success">Success</span>
+            <span class="rd-badge rd-badge-warning">Warning</span>
+          </div>
+          <div class="showcase-spacer"></div>
+          <div class="showcase-row">
+            <span class="rd-badge rd-badge-primary">v0.1.0</span>
+            <span class="rd-badge rd-badge-success">Passed</span>
+            <span class="rd-badge rd-badge-danger">3 errors</span>
+            <span class="rd-badge rd-badge-warning">Deprecated</span>
+            <span class="rd-badge">42</span>
+          </div>
+        </section>
+
+        <!-- Progress -->
+        <section id="progress" class="showcase-section">
+          <h2>Progress</h2>
+          <div class="showcase-block">
+            <div class="showcase-label">25%</div>
+            <div class="rd-progress"><div class="rd-progress-bar" style="width: 25%"></div></div>
+          </div>
+          <div class="showcase-block">
+            <div class="showcase-label">50%</div>
+            <div class="rd-progress"><div class="rd-progress-bar" style="width: 50%"></div></div>
+          </div>
+          <div class="showcase-block">
+            <div class="showcase-label">75%</div>
+            <div class="rd-progress"><div class="rd-progress-bar" style="width: 75%"></div></div>
+          </div>
+          <div class="showcase-block">
+            <div class="showcase-label">100%</div>
+            <div class="rd-progress"><div class="rd-progress-bar" style="width: 100%"></div></div>
+          </div>
+        </section>
+
+        <!-- Avatars -->
+        <section id="avatars" class="showcase-section">
+          <h2>Avatars</h2>
+          <div class="showcase-row">
+            <div class="rd-avatar rd-avatar-sm">S</div>
+            <div class="rd-avatar">M</div>
+            <div class="rd-avatar rd-avatar-lg">L</div>
+          </div>
+          <div class="showcase-spacer"></div>
+          <div class="showcase-row">
+            <div class="rd-avatar rd-avatar-sm">AB</div>
+            <div class="rd-avatar">CD</div>
+            <div class="rd-avatar rd-avatar-lg">EF</div>
+          </div>
+        </section>
+
+        <!-- Spinners -->
+        <section id="spinners" class="showcase-section">
+          <h2>Spinners</h2>
+          <div class="showcase-row">
+            <div class="rd-spinner rd-spinner-sm"></div>
+            <div class="rd-spinner"></div>
+            <div class="rd-spinner rd-spinner-lg"></div>
+          </div>
+        </section>
+
+        <!-- Breadcrumbs -->
+        <section id="breadcrumbs" class="showcase-section">
+          <h2>Breadcrumbs</h2>
+          <nav class="rd-breadcrumb">
+            <a class="rd-breadcrumb-item" href="#breadcrumbs">Home</a>
+            <a class="rd-breadcrumb-item" href="#breadcrumbs">Components</a>
+            <a class="rd-breadcrumb-item" href="#breadcrumbs">Library</a>
+            <span class="rd-breadcrumb-item">Breadcrumbs</span>
+          </nav>
+        </section>
+
+        <!-- Pagination -->
+        <section id="pagination" class="showcase-section">
+          <h2>Pagination</h2>
+          <div class="rd-pagination">
+            <button class="rd-pagination-item">&laquo;</button>
+            <button class="rd-pagination-item">1</button>
+            <button class="rd-pagination-item">2</button>
+            <button class="rd-pagination-item active">3</button>
+            <button class="rd-pagination-item">4</button>
+            <button class="rd-pagination-item">5</button>
+            <button class="rd-pagination-item">&raquo;</button>
+          </div>
+        </section>
+
+        <!-- Tabs -->
+        <section id="tabs" class="showcase-section">
+          <h2>Tabs</h2>
+          <div class="rd-tabs">
+            <button class="rd-tab active" data-tab="tab-overview">Overview</button>
+            <button class="rd-tab" data-tab="tab-features">Features</button>
+            <button class="rd-tab" data-tab="tab-config">Configuration</button>
+          </div>
+          <div id="tab-overview" class="rd-tab-panel active">
+            <p>Rendra UI is a lightweight component library designed for desktop applications running on the Servo rendering engine. It provides a consistent, theme-aware design system with zero external dependencies.</p>
+          </div>
+          <div id="tab-features" class="rd-tab-panel">
+            <p>Dark and light themes with CSS custom properties. Fully interactive components powered by vanilla JavaScript. Semantic HTML structure with accessible markup. Designed for Servo's rendering capabilities.</p>
+          </div>
+          <div id="tab-config" class="rd-tab-panel">
+            <pre><code>[app]
+name = "my-app"
+version = "0.1.0"
+
+[window]
+title = "My Rendra App"
+width = 1200
+height = 800</code></pre>
+          </div>
+        </section>
+
+        <!-- Accordion -->
+        <section id="accordion" class="showcase-section">
+          <h2>Accordion</h2>
+          <div class="rd-accordion" data-accordion-single>
+            <div class="rd-accordion-item active">
+              <button class="rd-accordion-header">What is Rendra?</button>
+              <div class="rd-accordion-content">
+                <p>Rendra is a desktop application runtime built on the Servo web engine. It lets you build native desktop apps using HTML, CSS, and JavaScript with Rust-powered backends.</p>
+              </div>
+            </div>
+            <div class="rd-accordion-item">
+              <button class="rd-accordion-header">How does IPC work?</button>
+              <div class="rd-accordion-content">
+                <p>IPC commands are registered in Rust using the CommandHandler trait. The frontend can invoke these commands through the Rendra bridge, receiving JSON responses asynchronously.</p>
+              </div>
+            </div>
+            <div class="rd-accordion-item">
+              <button class="rd-accordion-header">Can I use custom CSS?</button>
+              <div class="rd-accordion-content">
+                <p>Yes. Rendra UI provides design tokens as CSS custom properties. You can extend or override them to match your application's branding while keeping the component structure.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Modal -->
+        <section id="modal" class="showcase-section">
+          <h2>Modal</h2>
+          <button class="rd-btn rd-btn-primary" data-modal-open="demo-modal">Open Modal</button>
+
+          <div id="demo-modal" class="rd-modal-overlay">
+            <div class="rd-modal">
+              <div class="rd-modal-header">
+                <span>Modal Title</span>
+                <button class="rd-btn rd-btn-ghost rd-btn-sm rd-btn-icon" data-modal-close>&times;</button>
+              </div>
+              <div class="rd-modal-body">
+                <p>This is a modal dialog. It can contain any content and is dismissed by clicking the close button, the overlay background, or pressing Escape.</p>
+                <div class="showcase-spacer"></div>
+                <div class="form-field">
+                  <input type="text" class="rd-input" placeholder="Try typing here...">
+                </div>
+              </div>
+              <div class="rd-modal-footer">
+                <button class="rd-btn" data-modal-close>Cancel</button>
+                <button class="rd-btn rd-btn-primary" data-modal-close>Confirm</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dropdown -->
+        <section id="dropdown" class="showcase-section">
+          <h2>Dropdown</h2>
+          <div class="showcase-row">
+            <div class="rd-dropdown">
+              <button class="rd-btn rd-dropdown-trigger">File Menu &#9662;</button>
+              <div class="rd-dropdown-menu">
+                <button class="rd-dropdown-item">New File</button>
+                <button class="rd-dropdown-item">Open...</button>
+                <button class="rd-dropdown-item">Save</button>
+                <button class="rd-dropdown-item">Save As...</button>
+                <button class="rd-dropdown-item">Export</button>
+              </div>
+            </div>
+
+            <div class="rd-dropdown">
+              <button class="rd-btn rd-btn-primary rd-dropdown-trigger">Actions &#9662;</button>
+              <div class="rd-dropdown-menu">
+                <button class="rd-dropdown-item">Build Project</button>
+                <button class="rd-dropdown-item">Run Tests</button>
+                <button class="rd-dropdown-item">Deploy</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Toast -->
+        <section id="toast" class="showcase-section">
+          <h2>Toast</h2>
+          <div class="showcase-row">
+            <button class="rd-btn" onclick="Rendra.toast('This is an info toast.')">Info Toast</button>
+            <button class="rd-btn rd-btn-success" onclick="Rendra.toast('Build completed successfully!', {type: 'success'})">Success Toast</button>
+            <button class="rd-btn rd-btn-danger" onclick="Rendra.toast('Connection failed.', {type: 'danger'})">Danger Toast</button>
+            <button class="rd-btn rd-btn-warning" onclick="Rendra.toast('Disk space running low.', {type: 'warning'})">Warning Toast</button>
+          </div>
+        </section>
+
+        <!-- Tooltip -->
+        <section id="tooltip" class="showcase-section">
+          <h2>Tooltip</h2>
+          <div class="showcase-row">
+            <button class="rd-btn" data-tooltip="This is a tooltip">Hover me</button>
+            <button class="rd-btn rd-btn-primary" data-tooltip="Primary action tooltip">Primary</button>
+            <span class="rd-badge rd-badge-success" data-tooltip="All checks passed">Passing</span>
+            <span class="rd-badge rd-badge-warning" data-tooltip="2 warnings found">Warnings</span>
+          </div>
+        </section>
+
+        <!-- Tree -->
+        <section id="tree" class="showcase-section">
+          <h2>Tree</h2>
+          <div class="rd-card">
+            <div class="rd-card-body">
+              <div class="rd-tree">
+                <div class="rd-tree-node active">&#9660; servo-runtime</div>
+                <div class="rd-tree-children expanded">
+                  <div class="rd-tree-node">&#9654; crates</div>
+                  <div class="rd-tree-children">
+                    <div class="rd-tree-node">runtime-core</div>
+                    <div class="rd-tree-node">runtime-ipc</div>
+                    <div class="rd-tree-node">runtime-sandbox</div>
+                  </div>
+
+                  <div class="rd-tree-node">&#9654; examples</div>
+                  <div class="rd-tree-children">
+                    <div class="rd-tree-node">hello-world</div>
+                    <div class="rd-tree-node">markdown-notes</div>
+                    <div class="rd-tree-node">showcase</div>
+                  </div>
+
+                  <div class="rd-tree-node">&#9654; lib</div>
+                  <div class="rd-tree-children">
+                    <div class="rd-tree-node">&#9654; ui</div>
+                    <div class="rd-tree-children">
+                      <div class="rd-tree-node">rendra-ui.css</div>
+                      <div class="rd-tree-node">rendra-ui.js</div>
+                    </div>
+                  </div>
+
+                  <div class="rd-tree-node">Cargo.toml</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="../../../lib/ui/rendra-ui.js"></script>
+  <script>
+    // Theme toggle
+    var toggle = document.getElementById('theme-toggle');
+    toggle.checked = true; // dark mode on by default
+    toggle.addEventListener('change', function() {
+      document.documentElement.setAttribute(
+        'data-theme',
+        toggle.checked ? 'dark' : 'light'
+      );
+    });
+
+    // Sidebar active state on scroll
+    var sections = document.querySelectorAll('.showcase-section');
+    var navItems = document.querySelectorAll('.rd-sidebar-item');
+    var content = document.querySelector('.showcase-content');
+
+    content.addEventListener('scroll', function() {
+      var scrollTop = content.scrollTop;
+      var current = '';
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].offsetTop - 80 <= scrollTop) {
+          current = sections[i].getAttribute('id');
+        }
+      }
+      for (var j = 0; j < navItems.length; j++) {
+        navItems[j].classList.remove('active');
+        if (navItems[j].getAttribute('href') === '#' + current) {
+          navItems[j].classList.add('active');
+        }
+      }
+    });
+
+    // Smooth scroll for sidebar links
+    for (var k = 0; k < navItems.length; k++) {
+      navItems[k].addEventListener('click', function(e) {
+        e.preventDefault();
+        var targetId = this.getAttribute('href').substring(1);
+        var target = document.getElementById(targetId);
+        if (target) {
+          content.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

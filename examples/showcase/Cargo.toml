@@ -1,0 +1,10 @@
+[package]
+name = "showcase"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+runtime-core = { path = "../../crates/runtime-core" }
+runtime-ipc = { path = "../../crates/runtime-ipc" }
+serde_json = "1"
+url = "2"
