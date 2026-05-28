@@ -6,3 +6,6 @@ cat src/base/reset.css src/base/tokens.css src/base/themes/dark.css src/base/the
     src/layouts/*.css src/components/*.css > rendra-ui.css
 
 echo "Built rendra-ui.css ($(wc -c < rendra-ui.css) bytes)"
+
+cp src/js/rendra.js rendra-ui.js
+echo "Built rendra-ui.js ($(wc -c < rendra-ui.js) bytes)"
